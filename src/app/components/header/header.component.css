@@ -1,0 +1,145 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Jost', sans-serif;
+    text-decoration: none;
+    scroll-behavior: smooth;
+}
+:root{
+    --colorbotones:rgba(112.520718,44.062154,249.437846);
+    --colorfondo:rgba(0,0,0,0.8);
+    --paddingsecciones: 60px 0;
+    --marginelementos:40px;
+    --second-color: #a09dab;
+    --main-color: #f75023;
+    --h2-font: 3rem;
+    --p-font: 1.1rem;  
+}
+
+.hero{
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-position: center;
+}
+section{
+    padding: 100px 18%;
+}
+.home{
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    background-image: url('https://i.postimg.cc/0QVB1tV7/background10.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    align-items: center;
+    grid-gap: 4em;
+}
+.home-text h1{
+    margin: 10px 0px 25px;
+    font-size: 5rem;
+    line-height: 1;
+    font-weight:500;  
+}
+.home-text h5{
+    margin-bottom: 23px;
+    font-size: 19px;
+    font-weight: 500;
+}
+span{
+    color: #f75023;
+}
+.home-text h3{
+    color: #f75023;
+    font-size: 20px;
+    font-weight: 500;
+ 
+
+}
+.home-text p{
+    font-size: 1.1rem;
+    color:#3a3842;
+    line-height: 28px;
+    margin-bottom: 20px;
+}
+.home-img img{
+    max-width: 100%;
+    width: 540px;
+    height: 100%;
+    border-radius: 50%;
+}
+.btn{
+    display: inline-block;
+    color: #ffffff;
+    background: #f75023;
+    font-size: 1.1rem;
+    padding: 10px 40px;
+    font-weight: 500;
+    line-height: 24px;
+    border-radius: 30px;
+    transition: ease .40s;
+    margin: 20px;
+}
+.btn:hover{
+    transform: scale(1.1);
+}
+.contenedor{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    padding: 30px 18%;
+    transition: .3s;   
+}
+    /* Menu navegacion */
+.menu-navegacion{
+    padding:0;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    height:60px;
+
+}
+.logo{
+    color: #000;
+    margin-top:20px;
+    font-weight: bold;
+    font-size: 30px;
+    letter-spacing: 1px;
+    padding: 20px;
+}
+.logo h2,  #logo{
+    display:flex;
+    flex-direction: column;
+}
+.logo span{
+    text-align: center;
+   
+}
+.top-btn{
+    display:inline-block;
+    height:40px;
+    width:150px;
+    text-align: center;
+    padding: 9px 30px;
+    background: transparent;
+    outline: 2px solid #f75023;
+    border-radius:30px;
+    color: #3a3842;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition-property: outline-offset, outline-color;
+    transition-duration: .25s;
+} 
+.top-btn:hover {
+    outline-offset: 4px;
+    outline-color:  #f75023;   
+}

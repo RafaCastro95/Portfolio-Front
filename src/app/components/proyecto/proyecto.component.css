@@ -1,0 +1,38 @@
+.row1{
+    padding:20px;
+}
+.contenedor{
+    width: auto; 
+}
+p{
+    font-size: 1.1rem;
+}
+.parte1, .parte2{ 
+    display: inline-block;
+    text-align:justify;
+}
+.img-proyecto{
+    box-shadow: 10px 10px 10px #000000;
+}
+.row1 h1{
+    font-weight: bold;
+}
+.box{
+    box-sizing:border-box;
+    display:block;
+    height: auto;
+    margin: 10px;
+    margin-top:70px;
+    margin-bottom:25px;
+    padding:20px;
+    background-color: #fff;
+    border-radius: 40px 40px 40px 40px;
+    outline: 4px solid #b16ec4;
+}
+
+ /* Icono editar */
+ .edit{
+    display: flex;
+    column-gap: 25px;
+    float: right;
+ }

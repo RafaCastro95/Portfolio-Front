@@ -1,0 +1,14 @@
+footer{
+    background-color:rgba(0,0,0,0.8);
+    color: #fefefe;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    box-shadow: 3px 3px 8px #999;
+}
+
+
+.body{
+    background-color: rgba(0,0,0,0.8);
+}

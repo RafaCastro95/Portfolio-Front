@@ -1,0 +1,25 @@
+.box{
+    box-sizing:border-box;
+    display:block;
+    text-align:justified;
+    height: auto;
+    margin: 10px;
+    margin-top:90px;
+    padding:20px;
+    background-color: #fff;
+    border-radius: 40px 40px 40px 40px;
+    outline: 4px solid #b16ec4;
+}
+
+.circulo{
+    display:flex;
+    justify-content:center;
+    flex-flow:row wrap;
+}
+
+ /* Icono editar */
+ .edit{
+    display: flex;
+    column-gap: 25px;
+    float: right;
+ }
