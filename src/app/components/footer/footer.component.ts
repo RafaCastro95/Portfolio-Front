@@ -1,7 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { persona } from 'src/app/model/persona.model';
-import { PersonaService } from 'src/app/service/persona.service';
+import { Perfil } from 'src/app/model/perfil';
+import { HeaderService } from 'src/app/service/header.service';
+
 
 @Component({
   selector: 'app-footer',
@@ -9,21 +10,21 @@ import { PersonaService } from 'src/app/service/persona.service';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-  public persona: persona = new persona ("","","","","","");
-  public editPersona: persona | undefined
+  public perfil: Perfil | undefined;
+  public editperfil: Perfil | undefined;
 
-  constructor(private personaService: PersonaService) { }
+  constructor(private headerService : HeaderService) { }
 
   ngOnInit(): void {
-    this.getPersona();
+    this.getPerfil();
   }
 
-  public getPersona():void{
-    this.personaService.getPersona().subscribe({
-      next:(response: persona) =>{
-        this.persona=response
+  public getPerfil():void{
+    this.headerService.getPerfil().subscribe({
+      next:(response: Perfil) =>{
+        this.perfil=response;
       },
-      error:(error:HttpErrorResponse) =>{
+      error:(error:HttpErrorResponse)=>{
         alert(error.message);
       }
     })

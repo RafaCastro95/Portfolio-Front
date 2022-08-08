@@ -27,35 +27,7 @@ p{
  /* Icono editar */
  .edit{
     display: flex;
-    column-gap: 25px;
+    position: relative;
     float: right;
  }
 
-
-.icon{
-    width: 40px;
-    height: 40px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-size: 26px;
-    color:#fff;
-    border-radius: 50%;
-    outline: 2px solid rgba(112.520718,44.062154,249.437846);
-    transition-property:
-    outline-offset, outline-color, background-color;
-    transition-duration: .25s;
-}
-.icon:hover{
-    outline-offset: 4px;
-}
-
-.icon--edit:hover {
-    background-color: #ffff81;
-    outline-color: rgba(112.520718,44.062154,249.437846);
-}
-.icon--delete:hover {
-    background-color: #E4405F;
-    outline-color: rgba(112.520718,44.062154,249.437846);
-}

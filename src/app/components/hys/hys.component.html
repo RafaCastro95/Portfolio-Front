@@ -4,48 +4,66 @@
     <div class="col-lg-10">
         <div class="box" >
             <h1 style="font-weight: bold;">
-               Skills
+               Aptitudes
             </h1>
             <div class="text-center">
-                <button type="button" class="btn btn-success">
+                <button type="button" class="btn btn-success" (click)="onOpenModal('add')">
                     <a class="nav-link" style="color:#fff">
                     Añadir Skills <span class="sr-only">(current)</span> </a>
                 </button>
             </div>
             <div id="main-container">
-                <div *ngFor="let  of ">
+                <div *ngFor="let skills of skills ">
                     <div class="container">
                         <div class="row align-start">
-                            <div class="col">
-                                <img src="" alt="" class="img-fluid img-edu">
-                            </div>
-                            <div class="col">
-                                <h3></h3>
-                            </div>
+                            
+                            <div class="col-md-5  ">
 
-                            <div class="col text-center">
-                                <h3></h3>
+                                <a
+                                    (click)="onOpenModal('delete', skills)"
+                                    class="btn btn-secondary tooltips edit" 
+                                    data-placement="top" 
+                                    data-toogle="tooltip" 
+                                    data-original-title="Delete"
+                                    ><i class="fa fa-times"></i>
+                                </a>
+    
                                 <a 
-                                    class="btn btn-primary tooltips" 
+                                    (click)="onOpenModal('edit', skills)"
+                                    class="btn btn-primary tooltips edit " 
                                     data-placement="top" 
                                     data-toogle="tooltip" 
                                     data-original-title="Edit"
                                     ><i class="fa fa-pencil"></i>
                                 </a>
 
-                                <a
-                                    class="btn btn-secondary tooltips" 
-                                    data-placement="top" 
-                                    data-toogle="tooltip" 
-                                    data-original-title="Delete"
-                                    ><i class="fa fa-times"></i>
-                                </a>
+                                
+
+
+
+                                <div class="circulo">
+                                    <h3 class="text-center">{{skills.nombreSkills}}</h3>
+                                    <img class="img-fluid" src="{{skills.imagenSkills}}" alt="">
+
+
+
+                                    <circle-progress
+                                        [percent]= "skills.porcentajeSkills"
+                                        [radius]="75" 
+                                        [showImage]="false"
+                                        [showUnits]="true"
+                                        [outerStrokeWidth]="10"
+                                        [innerStrokeWidth]="4"
+                                        [outerStrokeColor]="'#8187dc'"
+                                        [innerStrokeColor]="'#944bbb'"
+                                        [animation]="true"
+                                        [animationDuration]="1200">
+                                      
+                                    </circle-progress>
+                                </div>
+                                    
+                               
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col align-sel-end">
-                            <p></p>
                         </div>
                     </div>
                 </div>
@@ -53,3 +71,136 @@
         </div>
     </div>
 </div>
+
+<!-- Add Employee Modal -->
+
+<div class="modal fade" id="addSkillsModal" tabindex="-1" role="dialog"  aria-labelledby="addSkillsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addSkillsModalLabel">Añadir Skills</h5>
+                <button
+                type="button" class="close" data-dismiss="modal" aria-label="Close"
+                >
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #addForm="ngForm" (ngSubmit)="onAddSkills(addForm)">
+                    <div class="form-group">
+                        <label for="nombreSkills">Nombre Skills</label>
+                        <input type="text" ngModel name="nombreSkills" class="form-control" id="nombreSkills" placeholder="Nombre Skills" required>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="porcentajeSkills">Porcentaje</label>
+                        <input type="text" ngModel name="porcentajeSkills" class="form-control" id="porcentajeSkills" placeholder="Porcentaje Skills" required>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="imagenSkills">Imagen Skills</label>
+                        <input type="text" ngModel name="imagenSkills" class="form-control" id="imagenSkills" placeholder="URL Imagen" required>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary"> Añadir cambios</button>
+
+                        <button type="button" id="add-skills-form" class="btn btn-secondary" data-dismiss="modal"
+                        > Cerrar </button>
+                    </div>
+                </form>    
+            </div>
+        </div>
+    </div>
+</div>  
+
+
+<!-- Edit Modal -->
+<div class="modal fade"  id="editSkillsModal" tabindex="-1" role="dialog" aria-labelledby="editSkillsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editSkillsModalLabel" >
+                    Editar Skills {{editSkills?.nombreSkills}}
+                </h5>
+                <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #editForm="ngForm">
+                    <div class="form-group">
+                        <label for="nombreSkills">Nombre Skills</label>
+                        <input type="text" ngModel="{{ editSkills?.nombreSkills }}" name="nombreSkills" class="form-control" id="nombreSkills" aria-describedby="emailHelp" placeholder="Nombre" >
+                    </div>
+                    <input type="hidden" ngModel="{{editSkills?.idSkills}}" name="idExp" class="form-control" id="idSkills" placeholder="">
+
+                    <div class="form-group">
+                        <label for="porcentajeSkills">Porcentaje</label>
+                        <input type="text" ngModel="{{ editSkills?.porcentajeSkills }}" name="porcentajeSkills " class="form-control" id="porcentajeSkills "  placeholder="Porcentaje" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="imagenSkills">URL Imagen</label>
+                        <input type="text" ngModel="{{ editSkills?.imagenSkills}}" name="imagenSkills" class="form-control" id="imagenSkills"  placeholder="URL Imagen" >
+                    </div>
+
+                    <div class="modal-footer">
+                        <button (click)="onEditSkills(editForm.value)" data-dismiss="modal" class="btn btn-primary"
+                        > Guardar Cambios</button>
+
+                        <button type="button" id="" data-dismiss="modal" class="btn btn-secondary"
+                        >Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 
+
+
+<!-- Delete Modal -->
+
+<div data-bs-toggle="modal" data-bs-target="#deleteModalLabel" class="modal fade" id="deleteSkillsModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel" >Borrar Skills</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                >
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    ¿Estás seguro de que deseas eliminar 
+                    {{deleteSkills?.nombreSkills}}?
+                </p>
+                <div class="modal-footer">
+                    <button 
+                        (click)="onDeleteSkills(deleteSkills!.idSkills)" class="btn btn-danger" data-dismiss="modal"
+                    > Si </button>
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                    > No </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<!-- Notificacion -->
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div *ngIf="skills?.length == 0" class="col-lg-10 col-md-10 col-xl-10 text-center ">
+        <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">Sin Aptitudes!</h4>
+            <p>No se ha encontrado ninguna aptitud cargada.</p>
+        </div>
+    </div>
+</div> 

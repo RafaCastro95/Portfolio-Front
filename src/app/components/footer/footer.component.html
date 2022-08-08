@@ -1,7 +1,7 @@
 <div class="body">
     <div class="row">
-        <footer>
-            <p>{{persona.apellido}} {{persona.nombre}} | © Argentina Programa 2022</p>
+        <footer *ngIf="perfil">
+            <p> {{perfil.apellido}} {{perfil.nombre}} | © Argentina Programa 2022</p>
             <p>Argentina</p>
         </footer>
     </div>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,8 +13,10 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { ProyectoComponent } from './components/proyecto/proyecto.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormsModule } from '@angular/forms';
-import { IniciarSesionComponent } from './components/iniciar-sesion/iniciar-sesion.component';
-
+import { PortfolioComponent } from './components/portfolio/portfolio.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
+import { InterceptorService } from './service/interceptor.service';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { IniciarSesionComponent } from './components/iniciar-sesion/iniciar-sesi
     HysComponent,
     ProyectoComponent,
     FooterComponent,
-    IniciarSesionComponent
+    PortfolioComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -35,9 +38,11 @@ import { IniciarSesionComponent } from './components/iniciar-sesion/iniciar-sesi
     AppRoutingModule,
     BrowserAnimationsModule,
     NgCircleProgressModule.forRoot({}),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ 
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

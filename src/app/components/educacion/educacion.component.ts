@@ -66,7 +66,7 @@ export class EducacionComponent implements OnInit {
   public onEditEducacion(educacion: Educacion){
     this.editEducacion=educacion;
     document.getElementById('add-educacion-form')?.click();
-    this.educacionService.updateEducacion(educacion).subscribe({
+    this.educacionService.editarEducacion(educacion).subscribe({
       next:(response:Educacion) => {
         console.log(response);
         this.getEducaciones();
@@ -78,7 +78,7 @@ export class EducacionComponent implements OnInit {
   }
 
   public onDeleteEducacion(idEdu: number):void{
-    this.educacionService.deleteEducacion(idEdu).subscribe({
+    this.educacionService.borrarEducacion(idEdu).subscribe({
       next:(response: void) => {
         console.log(response);
         this.getEducaciones();

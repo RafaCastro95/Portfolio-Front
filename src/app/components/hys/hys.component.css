@@ -4,8 +4,8 @@
     text-align:justified;
     height: auto;
     margin: 10px;
-    margin-top:90px;
     padding:20px;
+    margin-top:90px;
     background-color: #fff;
     border-radius: 40px 40px 40px 40px;
     outline: 4px solid #b16ec4;
@@ -16,10 +16,11 @@
     justify-content:center;
     flex-flow:row wrap;
 }
+img{
+    height:70px;
+    
+}
 
- /* Icono editar */
- .edit{
-    display: flex;
-    column-gap: 25px;
-    float: right;
- }
+.edit{
+    float:right;
+}
