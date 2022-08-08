@@ -15,11 +15,16 @@ export class HeaderComponent implements OnInit {
   public perfil: Perfil | undefined;
   public editPerfil: Perfil | undefined;
 
+  isLogged= false;
+
   constructor(private headerService : HeaderService) { }
 
   ngOnInit(): void {
    this.getPerfil();
+
   }
+
+
 
   public getPerfil():void{
     this.headerService.getPerfil().subscribe({
