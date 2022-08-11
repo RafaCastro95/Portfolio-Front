@@ -1,8 +1,10 @@
 
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Perfil } from 'src/app/model/perfil';
 import { HeaderService } from 'src/app/service/header.service';
+import { TokenService } from 'src/app/service/token.service';
 
 
 @Component({
@@ -11,19 +13,41 @@ import { HeaderService } from 'src/app/service/header.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  roles!: string[];
+  isAdmin = false;
+  isLogged = false;
+  nombreUsuario = '';
   public perfil: Perfil | undefined;
   public editPerfil: Perfil | undefined;
 
-  isLogged= false;
+ 
 
-  constructor(private headerService : HeaderService) { }
+  constructor(private headerService : HeaderService,  private ruta:Router, private tokenService: TokenService) { }
 
   ngOnInit(): void {
    this.getPerfil();
+   if(this.tokenService.getToken()){
+    this.isLogged=true;
+    this.nombreUsuario= this.tokenService.getUserName();
+  }else{
+    this.isLogged = false;
+    this.nombreUsuario= '';
+  };
+
+  this.roles = this.tokenService.getAuthorities();
+  this.roles.forEach(rol => {
+    if(rol === 'ROLE_ADMIN'){
+      this.isAdmin = true;
+    }
+  });
+  
 
   }
 
+  onLogOut():void{
+    this.tokenService.logOut();
+    window.location.reload();
+  }
 
 
   public getPerfil():void{
@@ -63,5 +87,6 @@ export class HeaderComponent implements OnInit {
       }
     })
   }
+
 
 }

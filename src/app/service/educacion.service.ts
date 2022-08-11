@@ -13,16 +13,16 @@ export class EducacionService {
 
 
   public getEducacion(): Observable<Educacion[]>{
-    return this.http.get<Educacion[]>(this.url + "educacion/todas");
+    return this.http.get<Educacion[]>(this.url + `educacion/todas`);
   }
   public addEducacion(educacion: Educacion): Observable<Educacion>{
-    return this.http.post<Educacion>(this.url + "educacion/crear",educacion);
+    return this.http.post<Educacion>(this.url + `educacion/crear`,educacion);
   }
   public editarEducacion(educacion: Educacion): Observable<Educacion>{
-    return this.http.put<Educacion>(this.url + "educacion/editar",educacion);
+    return this.http.put<Educacion>(this.url + `educacion/editar`,educacion);
   }
   public borrarEducacion(idEdu: number): Observable<void>{
-    return this.http.delete<void>(this.url + "educacion/borrar/${idEdu}");
+    return this.http.delete<void>(this.url + `educacion/borrar/${idEdu}`);
   }
 
 }

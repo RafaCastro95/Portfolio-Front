@@ -4,14 +4,28 @@
             <div class="logo">
                 <h2>Argentina Programa <span id="logo">#YoProgramo</span></h2>
             </div>
-            <a href="/login" class="top-btn" >Iniciar Sesión</a>
+            <div>
+                <div *ngIf="isLogged; else loggedOut">
+                    <h2>Bienvenido {{nombreUsuario}}</h2>
+                </div>
+                <ng-template #loggedOut></ng-template>
+            </div>
+            <!-- <a href="/login" class="top-btn" *ngIf="!isLogged" >Iniciar Sesión</a> -->
+            <a href="#" class="top-btn" (click)="onLogOut()" *ngIf="isLogged"  >Cerrar Sesión</a>
+
+          
         </nav>
         
-        <div id="main-container" *ngIf="perfil">
+        
+
+
+
+        <div id="main-container" >
               
             <section class="home" id="home">
                 <div class="home-text" >
                     <h3>Hola, soy</h3>
+                    <div *ngIf="perfil">
                     <h1>{{perfil.nombre}} {{perfil.apellido}}</h1>
                     <h5><span>{{perfil.titulo}}</span></h5>
                     <a href="#" class="btn text-center">Acerca de mi</a>
@@ -19,12 +33,15 @@
                     <div class="contacto">
                         <app-social></app-social>
                     </div>
+                    </div>
                     
                 </div>
-                <div class="col text-center">
+                <div class="col text-center" *ngIf="perfil" >
                     <div class="home-img">
                         <img src="{{perfil.fotoPerfil}}" alt="foto de perfil">
-                        <a 
+                        <div *ngIf="isAdmin">
+                           <div *ngIf="isLogged">
+                            <a 
                             (click)="onOpenModal('edit', perfil)"
                             class="btn btn-primary tooltips" 
                             data-placement="top" 
@@ -32,6 +49,8 @@
                             data-original-title="Edit"
                             ><i class="fa fa-pencil"></i>
                         </a>
+                           </div>
+                        </div>
                     </div>
                 </div>
             </section>

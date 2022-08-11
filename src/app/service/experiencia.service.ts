@@ -13,16 +13,16 @@ export class ExperienciaService {
 
 
   public getExperiencias(): Observable<Experiencia[]>{
-    return this.http.get<Experiencia[]>(this.url + "experiencia/todas");
+    return this.http.get<Experiencia[]>(this.url + `experiencia/todas`);
   }
   public nuevaExperiencia(experiencia: Experiencia): Observable<Experiencia>{
-    return this.http.post<Experiencia>(this.url + "experiencia/crear",experiencia);
+    return this.http.post<Experiencia>(this.url + `experiencia/crear`,experiencia);
   }
   public editarExperiencia(experiencia: Experiencia): Observable<Experiencia>{
-    return this.http.put<Experiencia>(this.url + "experiencia/editar",experiencia);
+    return this.http.put<Experiencia>(this.url + `experiencia/editar`,experiencia);
   }
   public borrarExperiencia(idExp: number): Observable<void>{
-    return this.http.delete<void>(this.url + "experiencia/borrar/${idExp}");
+    return this.http.delete<void>(this.url + `experiencia/borrar/${idExp}`);
   }
   
 }

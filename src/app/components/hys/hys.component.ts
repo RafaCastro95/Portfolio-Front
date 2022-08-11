@@ -1,8 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Skills } from 'src/app/model/skills';
-import { SkillsService } from 'src/app/service/skills.service';
+import { Skill } from 'src/app/model/skills';
+import { SkillService } from 'src/app/service/skill.service';
+import { TokenService } from 'src/app/service/token.service';
+
+
 
 @Component({
   selector: 'app-hys',
@@ -10,19 +13,34 @@ import { SkillsService } from 'src/app/service/skills.service';
   styleUrls: ['./hys.component.css']
 })
 export class HysComponent implements OnInit {
-  public skills : Skills []=[];
-  public editSkills: Skills | undefined;
-  public deleteSkills: Skills | undefined;
+  roles!: string[];
+  isAdmin = false;
+  isLogged = false;
+  public skills : Skill []=[];
+  public editSkill: Skill | undefined;
+  public deleteSkills: Skill | undefined;
 
-  constructor(private skillsService: SkillsService) { }
+  constructor(private skillService: SkillService, private tokenService: TokenService) { }
 
   ngOnInit(): void {
     this.getSkills();
+    if(this.tokenService.getToken()){
+      this.isLogged=true;
+    }else{
+      this.isLogged = false;
+    };
+
+    this.roles = this.tokenService.getAuthorities();
+    this.roles.forEach(rol => {
+      if(rol === 'ROLE_ADMIN'){
+        this.isAdmin = true;
+      }
+    });
   }
 
   public getSkills():void{
-    this.skillsService.getSkills().subscribe({
-      next:(Response: Skills[]) =>{
+    this.skillService.getSkills().subscribe({
+      next:(Response: Skill[]) =>{
         this.skills=Response;
       },
       error:(error:HttpErrorResponse)=>{
@@ -31,28 +49,29 @@ export class HysComponent implements OnInit {
     })} 
 
 
-    public onOpenModal(mode:String, skills?: Skills):void{
+    public onOpenModal(mode:String, skill?: Skill):void{
       const container=document.getElementById('main-container');
       const button=document.createElement('button');
       button.style.display='none';
       button.setAttribute('data-toggle', 'modal'); 
       if(mode==='add'){
-        button.setAttribute('data-target', '#addSkillsModal');
+        button.setAttribute('data-target', '#addSkillModal');
       }else if (mode==='delete'){
-        this.deleteSkills=skills;
-        button.setAttribute('data-target', '#deleteSkillsModal');
+        this.deleteSkills=skill;
+        button.setAttribute('data-target', '#deleteSkillModal');
       }else if (mode === 'edit'){
-        this.editSkills=skills;
-        button.setAttribute('data-target', '#editSkillsModal');
+        this.editSkill= skill;
+        button.setAttribute('data-target', '#editSkillModal');
       }
       container?.appendChild(button); 
       button.click();
     }
 
+
     public onAddSkills(addForm: NgForm){
-      document.getElementById('add-skills-form')?.click();
-      this.skillsService.nuevaSkills(addForm.value).subscribe({
-        next:(response:Skills) => {
+      document.getElementById('add-skill-form')?.click();
+      this.skillService.nuevaSkill(addForm.value).subscribe({
+        next:(response:Skill) => {
           console.log(response);
           this.getSkills();
           addForm.reset();
@@ -63,11 +82,11 @@ export class HysComponent implements OnInit {
         }
       })
     }
-    public onEditSkills(skills:Skills){
-      this.editSkills= skills;
-      document.getElementById('add-experiencia-form')?.click();
-      this.skillsService.editarSkills(skills).subscribe({
-        next:(response: Skills) => {
+    public onEditSkills(skill:Skill){
+      this.editSkill= skill;
+      document.getElementById('add-skill-form')?.click();
+      this.skillService.editarSkill(skill).subscribe({
+        next:(response: Skill) => {
           console.log(response);
           this.getSkills();
         }, 
@@ -78,8 +97,8 @@ export class HysComponent implements OnInit {
     }
 
 
-    public onDeleteSkills(idSkills: number):void{
-      this.skillsService.borrarSkills(idSkills).subscribe({
+    public onDeleteSkills(idSkill: number):void{
+      this.skillService.borrarSkills(idSkill).subscribe({
         next:(response: void) => {
           console.log(response);
           this.getSkills();

@@ -16,7 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
-import { InterceptorService } from './service/interceptor.service';
+import { interceptorProvider } from './service/interceptor.service';
+
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { InterceptorService } from './service/interceptor.service';
     ProyectoComponent,
     FooterComponent,
     PortfolioComponent,
-    LoginComponent
+    LoginComponent,
+ 
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import { InterceptorService } from './service/interceptor.service';
     ReactiveFormsModule
   ],
   providers: [ 
-    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}],
+    interceptorProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

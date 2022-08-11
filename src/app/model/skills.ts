@@ -1,6 +1,6 @@
-export interface Skills{
-    idSkills: number;
-    nombreSkills : String;
-    porcentajeSkills: number;
-    imagenSkills: String;
+export interface Skill{
+    idSkill: number;
+    nombreSkill : String;
+    porcentaje: number;
+    imagenSkill: String;
 }

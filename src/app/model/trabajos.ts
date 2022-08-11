@@ -1,4 +1,4 @@
-export interface Trabajos{
+export interface Trabajo{
     idPro: number;
     nombrePro : String;
     descPro: String;
