@@ -4,6 +4,9 @@
 .contenedor{
     width: auto; 
 }
+.container{
+    padding:10px;
+}
 p{
     font-size: 1.1rem;
 }
@@ -32,7 +35,7 @@ p{
 
  /* Icono editar */
  .edit{
-    display: flex;
-    column-gap: 25px;
-    float: right;
+  
+    display:block;
+    float:right
  }

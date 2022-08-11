@@ -3,8 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Trabajo } from 'src/app/model/trabajos';
 import { TokenService } from 'src/app/service/token.service';
+import { TrabajoService } from 'src/app/service/trabajo.service';
 
-import { TrabajosService } from 'src/app/service/trabajos.service';
+
 
 @Component({
   selector: 'app-proyecto',
@@ -19,7 +20,7 @@ export class ProyectoComponent implements OnInit {
   public editTrabajos: Trabajo | undefined;
   public deleteTrabajos: Trabajo | undefined;
 
-  constructor(private trabajosService: TrabajosService, private tokenService: TokenService) { }
+  constructor( private tokenService: TokenService, private trabajoService: TrabajoService) { }
 
   ngOnInit(): void {
     this.getTrabajos();
@@ -31,7 +32,7 @@ export class ProyectoComponent implements OnInit {
   }
 
   public getTrabajos():void{
-    this.trabajosService.getTrabajos().subscribe({
+    this.trabajoService.getTrabajos().subscribe({
       next:(Response: Trabajo[]) =>{
         this.trabajos=Response;
       },
@@ -69,7 +70,7 @@ export class ProyectoComponent implements OnInit {
 
   public onAddTrabajos(addForm: NgForm){
     document.getElementById('add-trabajo-form')?.click();
-    this.trabajosService.nuevoTrabajo(addForm.value).subscribe({
+      this.trabajoService.nuevoTrabajo(addForm.value).subscribe({
       next:(response:Trabajo) => {
         console.log(response);
         this.getTrabajos();
@@ -85,7 +86,7 @@ export class ProyectoComponent implements OnInit {
   public onEditTrabajos(trabajo: Trabajo){
     this.editTrabajos= trabajo;
     document.getElementById('add-trabajo-form')?.click();
-    this.trabajosService.editarTrabajo(trabajo).subscribe({
+    this.trabajoService.editarTrabajo(trabajo).subscribe({
       next:(response:Trabajo) => {
         console.log(response);
         this.getTrabajos();
@@ -97,7 +98,7 @@ export class ProyectoComponent implements OnInit {
   }
 
   public onDeleteTrabajos(idPro: number):void{
-    this.trabajosService.borrarTrabajo(idPro).subscribe({
+    this.trabajoService.borrarTrabajo(idPro).subscribe({
       next:(response: void) => {
         console.log(response);
         this.getTrabajos();

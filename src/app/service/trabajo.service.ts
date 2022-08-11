@@ -7,14 +7,14 @@ import { Trabajo } from '../model/trabajos';
 @Injectable({
   providedIn: 'root'
 })
-export class TrabajosService {
+export class TrabajoService {
   url:string = "http://localhost:8080/api/"
 
   constructor(private http: HttpClient) { }
 
 
   public getTrabajos(): Observable<Trabajo[]>{
-    return this.http.get<Trabajo[]>(this.url +` trabajo/todas`);
+    return this.http.get<Trabajo[]>(this.url + `trabajo/todas`);
   }
   public nuevoTrabajo(trabajo: Trabajo): Observable<Trabajo>{
     return this.http.post<Trabajo>(this.url + `trabajo/crear`,trabajo);

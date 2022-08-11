@@ -1,26 +1,31 @@
 .box{
     box-sizing:border-box;
-    display:block;
+   
     text-align:justified;
-    height: auto;
+    height: max-content;
     margin: 10px;
     padding:20px;
-    margin-top:90px;
+
     background-color: #fff;
     border-radius: 40px 40px 40px 40px;
     outline: 4px solid #b16ec4;
 }
 
-.circulo{
+.contenido{
     display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content:center;
-    flex-flow:row wrap;
 }
+
+
 img{
-    height:70px;
+    height:100px;
+    margin-left: 20%;
     
 }
 
 .edit{
+    display:block;
     float:right;
 }

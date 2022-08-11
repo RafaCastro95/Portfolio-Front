@@ -1,7 +1,7 @@
 <div class="row" >
-    <div class="col-lg-1"></div>
+    <div class="col-lg-4"></div>
 
-    <div class="col-lg-10">
+    <div class="col-lg-4">
         <div class="box" >
             <h1 style="font-weight: bold;">
                Aptitudes
@@ -19,9 +19,9 @@
                     <div class="container">
                         <div class="row align-start">
                             
-                            <div class="col-md-5  ">
-
-                                <a
+                            <div>
+                                <div *ngIf="isAdmin">
+                                    <a
                                     (click)="onOpenModal('delete', skill)"
                                     class="btn btn-secondary tooltips edit" 
                                     data-placement="top" 
@@ -39,16 +39,17 @@
                                     ><i class="fa fa-pencil"></i>
                                 </a>
 
+                                </div>
+
+                               
                                 
 
 
 
                                 <div class="circulo">
+                                    
                                     <h3 class="text-center">{{skill.nombreSkill}}</h3>
-                                    <img class="img-fluid" src="{{skill.imagenSkill}}" alt="">
-
-
-
+                                    
                                     <circle-progress
                                         [percent]= "skill.porcentaje"
                                         [radius]="75" 
@@ -59,9 +60,10 @@
                                         [outerStrokeColor]="'#8187dc'"
                                         [innerStrokeColor]="'#944bbb'"
                                         [animation]="true"
-                                        [animationDuration]="1200">
-                                      
+                                        [animationDuration]="1200"> 
                                     </circle-progress>
+
+                                    <img class="img-fluid" src="{{skill.imagenSkill}}" alt="">
                                 </div>
                                     
                                
@@ -152,7 +154,7 @@
                         <label for="imagenSkills">URL Imagen</label>
                         <input type="text" ngModel="{{ editSkill?.imagenSkill}}" name="imagenSkill" class="form-control" id="imagenSkill"  placeholder="URL Imagen" >
                     </div>
-
+                    
                     <div class="modal-footer">
                         <button (click)="onEditSkills(editForm.value)" data-dismiss="modal" class="btn btn-primary"
                         > Guardar Cambios</button>
