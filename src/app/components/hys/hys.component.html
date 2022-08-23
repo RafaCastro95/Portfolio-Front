@@ -1,7 +1,9 @@
 <div class="row" >
-    <div class="col-lg-4"></div>
+    <div class="col-lg-1"></div>
 
-    <div class="col-lg-4">
+ 
+
+    <div class="col-lg-10">
         <div class="box" >
             <h1 style="font-weight: bold;">
                Aptitudes
@@ -16,46 +18,22 @@
             </div>
             <div id="main-container">
                 <div *ngFor="let skill of skills ">
-                    <div class="container">
-                        <div class="row align-start">
+                    <div class="container text-center">
+                        <div>
                             
-                            <div>
-                                <div *ngIf="isAdmin">
-                                    <a
-                                    (click)="onOpenModal('delete', skill)"
-                                    class="btn btn-secondary tooltips edit" 
-                                    data-placement="top" 
-                                    data-toogle="tooltip" 
-                                    data-original-title="Delete"
-                                    ><i class="fa fa-times"></i>
-                                </a>
-    
-                                <a 
-                                    (click)="onOpenModal('edit', skill)"
-                                    class="btn btn-primary tooltips edit " 
-                                    data-placement="top" 
-                                    data-toogle="tooltip" 
-                                    data-original-title="Edit"
-                                    ><i class="fa fa-pencil"></i>
-                                </a>
-
-                                </div>
-
+                            <div class="circulo">
                                
-                                
-
-
-
-                                <div class="circulo">
+                                <div >
                                     
-                                    <h3 class="text-center">{{skill.nombreSkill}}</h3>
+                                    <h3 >{{skill.nombreSkill}}</h3>
+                                    <img class="img-fluid" src="{{skill.imagenSkill}}" alt="">
                                     
                                     <circle-progress
-                                        [percent]= "skill.porcentaje"
-                                        [radius]="75" 
+                                        [percent]= "(skill.porcentaje)"
+                                        [radius]="55" 
                                         [showImage]="false"
                                         [showUnits]="true"
-                                        [outerStrokeWidth]="10"
+                                        [outerStrokeWidth]="8"
                                         [innerStrokeWidth]="4"
                                         [outerStrokeColor]="'#8187dc'"
                                         [innerStrokeColor]="'#944bbb'"
@@ -63,10 +41,31 @@
                                         [animationDuration]="1200"> 
                                     </circle-progress>
 
-                                    <img class="img-fluid" src="{{skill.imagenSkill}}" alt="">
-                                </div>
-                                    
-                               
+                                    <div *ngIf="isAdmin">
+
+                                        <a 
+                                        (click)="onOpenModal('edit', skill)"
+                                        class="btn btn-primary tooltips edit" 
+                                        data-placement="top" 
+                                        data-toogle="tooltip" 
+                                        data-original-title="Edit"
+                                        ><i class="fa fa-pencil"></i>
+                                        </a>
+
+                                        <a
+                                        (click)="onOpenModal('delete', skill)"
+                                        class="btn btn-secondary tooltips edit" 
+                                        data-placement="top" 
+                                        data-toogle="tooltip" 
+                                        data-original-title="Delete"
+                                        ><i class="fa fa-times"></i>
+                                         </a>
+        
+                                        
+    
+                                    </div>
+
+                                </div> 
                             </div>
                         </div>
                     </div>
@@ -142,20 +141,22 @@
                         <label for="nombreSkills">Nombre Skills</label>
                         <input type="text" ngModel="{{ editSkill?.nombreSkill }}" name="nombreSkill" class="form-control" id="nombreSkill" aria-describedby="emailHelp" placeholder="Nombre" >
                     </div>
-                    <input type="hidden" ngModel="{{editSkill?.idSkill}}" name="idSkill" class="form-control" id="idSkill" placeholder="">
+                    
 
                     <div class="form-group">
                         <label for="porcentajeSkills">Porcentaje</label>
+                        
                         <input type="text" ngModel="{{ editSkill?.porcentaje }}" name="porcentaje " class="form-control" id="porcentaje "  placeholder="Porcentaje" >
                     </div>
                     <input type="hidden" ngModel="{{editSkill?.idSkill}}" name="idSkill" class="form-control" id="idSkill" placeholder="">
 
                     <div class="form-group">
                         <label for="imagenSkills">URL Imagen</label>
+                        
                         <input type="text" ngModel="{{ editSkill?.imagenSkill}}" name="imagenSkill" class="form-control" id="imagenSkill"  placeholder="URL Imagen" >
                     </div>
                     
-                    <div class="modal-footer">
+                    <div class="modal-footer" >
                         <button (click)="onEditSkills(editForm.value)" data-dismiss="modal" class="btn btn-primary"
                         > Guardar Cambios</button>
 

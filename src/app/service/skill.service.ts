@@ -21,7 +21,10 @@ export class SkillService {
   public nuevaSkill(skill: Skill): Observable<Skill>{
     return this.http.post<Skill>(this.url + `skills/crear`,skill);
   }
-  public editarSkill(skill: Skill): Observable<Skill>{
+  public detail(id:number): Observable<Skill>{
+    return this.http.get<Skill>(this.url + `detalle/${id}`);
+  }
+  public editarSkill( skill: Skill): Observable<Skill>{
     return this.http.put<Skill>(this.url + `skills/editar`,skill);
   }
   public borrarSkills(idSkill: number): Observable<void>{

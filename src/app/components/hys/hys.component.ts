@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Skill } from 'src/app/model/skills';
 import { SkillService } from 'src/app/service/skill.service';
 import { TokenService } from 'src/app/service/token.service';
@@ -13,6 +14,7 @@ import { TokenService } from 'src/app/service/token.service';
   styleUrls: ['./hys.component.css']
 })
 export class HysComponent implements OnInit {
+
   roles!: string[];
   isAdmin = false;
   isLogged = false;
@@ -20,7 +22,10 @@ export class HysComponent implements OnInit {
   public editSkill: Skill | undefined;
   public deleteSkills: Skill | undefined;
 
-  constructor(private skillService: SkillService, private tokenService: TokenService) { }
+  constructor(private skillService: SkillService,
+     private tokenService: TokenService,
+     private activatedRoute: ActivatedRoute
+     ) { }
 
   ngOnInit(): void {
     this.getSkills();
@@ -36,6 +41,11 @@ export class HysComponent implements OnInit {
         this.isAdmin = true;
       }
     });
+
+
+    
+
+
   }
 
   public getSkills():void{
@@ -82,9 +92,8 @@ export class HysComponent implements OnInit {
         }
       })
     }
-    public onEditSkills(skill:Skill){
+    public onEditSkills(skill:Skill) {
       this.editSkill= skill;
-      document.getElementById('add-skill-form')?.click();
       this.skillService.editarSkill(skill).subscribe({
         next:(response: Skill) => {
           console.log(response);
@@ -95,6 +104,8 @@ export class HysComponent implements OnInit {
         }
       })
     }
+ 
+
 
 
     public onDeleteSkills(idSkill: number):void{
@@ -110,12 +121,3 @@ export class HysComponent implements OnInit {
     }
     
 }
-
-
-
-
-
-
-
- 
-
