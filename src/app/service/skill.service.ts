@@ -9,7 +9,7 @@ import { Skill } from '../model/skills';
   providedIn: 'root'
 })
 export class SkillService {
-  url:string = "http://localhost:8080/api/"
+  url:string = "https://backnd2022.herokuapp.com/api/"
 
   constructor(private http: HttpClient) { }
 
