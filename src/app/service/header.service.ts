@@ -16,7 +16,7 @@ export class HeaderService {
 
 
   public getPerfil(): Observable<Perfil>{
-    return this.http.get<Perfil>(this.url + "perfil/1");
+    return this.http.get<Perfil>(this.url + "perfil/2");
   }
 
   public editarPerfil(perfil: Perfil): Observable<Perfil>{
